@@ -9,7 +9,7 @@ export const Navbar = () => {
       </Link>
       <div className="ml-auto">
         <Link to="/demo">
-          <div className="dropdown">
+          {/* <div className="dropdown">
             <button
               className="btn btn-secondary dropdown-toggle"
               type="button"
@@ -31,7 +31,7 @@ export const Navbar = () => {
                 Something else here
               </a>
             </div>
-          </div>
+          </div> */}
         </Link>
       </div>
     </nav>
