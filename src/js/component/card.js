@@ -1,45 +1,27 @@
-import React, {useState, useEffect}from "react";
+import React, {useContext, useEffect, useState}from "react";
+import { useParams, Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
-export default function Card() {
+export default function Card(props) {
+  const params = useParams();
 
- const [people, setPeople] = useState([]); 
+  const { store, actions } = useContext(Context);
   
-  const obtenerPeople = () => {
-    fetch("https://www.swapi.tech/api/planets", {
-    method: "GET",
-    headers: {"Content-type": "aplication/json",
-  },
-  })
-  .then((resp) => {
-    console.log("STATUS");
-    console.log(resp.status);
-    return resp.json();
-  })
-  .then((data) =>{
-    setPeople(data);
-    console.log(people)
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-  
-
-};
-
-useEffect(() => {obtenerPeople();
-}, []);
 return (
   <div className="card" style={{width: "18rem"}}>
-<img src="..." className="card-img-top" alt="..."/>
+<img src={props.url} className="card-img-top" alt="..."/>
+
 <div className="card-body">
-  <h5 className="card-title">Nombre personaje</h5>
-  <p className="card-text">gender</p>
-  <p className="card-text">hair color</p>
-  <p className="card-text">eye color</p>
-  <a href="#" className="btn btn-primary">link del personaje</a>
-</div>
-</div>
-);
+      <h5 className="card-title">{props.nombre}</h5>
+      <p className="card-text">Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+      </p>
+      <Link to={typeCard === "personaje" ? `/people/${props.id}` : `/planet/${props.id}`}/>
+            <span className="btn btn-primary btn-lg" href="#" role="button">
+              Learn more
+            </span>
+  </div>
+</div>);
 };
 
   

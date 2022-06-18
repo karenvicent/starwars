@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import { Context } from '../store/appContext';
+import { Link, useParams } from 'react-router-dom';
 
 export default function Personaje() {
+    const params = useParams();
+    console.log(params)
+    const { store, actions } = useContext(Context)
+    useEffect(() => {
+        actions.verPersonaje(params.ids)
+    }, [params])
   return (
     <div>
         <div className='row'>
@@ -8,7 +16,7 @@ export default function Personaje() {
                 <img />
             </div>
             <div className='col-6'>
-                <h1>aa</h1>
+                <h1>{params.ids}</h1>
                 <p>aa</p>
             </div>
         </div>
